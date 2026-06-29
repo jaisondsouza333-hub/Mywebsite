@@ -75,7 +75,7 @@ nav.scrolled{background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-fi
 .theme-toggle,.burger{width:42px;height:42px;border:1px solid var(--line2);border-radius:12px;background:var(--panel);color:var(--text);font-size:19px;display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s}
 .theme-toggle:hover{box-shadow:var(--glow);border-color:var(--violet)}
 .burger{display:none}
-.tray{position:fixed;inset:0;z-index:115;background:color-mix(in srgb,var(--bg) 96%,transparent);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;visibility:hidden;transition:opacity .35s}
+.tray{position:fixed;inset:0;z-index:200;background:color-mix(in srgb,var(--bg) 96%,transparent);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;visibility:hidden;transition:opacity .35s}
 .tray.open{opacity:1;visibility:visible}
 .tray a{font-size:26px;font-weight:600}.tray a:hover{color:var(--cyan)}
 .tray .close{position:absolute;top:20px;right:20px;width:50px;height:50px;border-radius:50%;border:1px solid var(--line2);background:var(--panel);color:var(--text);font-size:30px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;-webkit-tap-highlight-color:transparent}.tray .close:hover{border-color:var(--violet);box-shadow:var(--glow)}
