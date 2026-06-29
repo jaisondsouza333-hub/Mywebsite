@@ -242,6 +242,40 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
 .stat::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(124,92,255,.17),transparent 60%)}
 .stat:hover::after{opacity:1}
 .stat:hover .snum{text-shadow:0 0 22px rgba(124,92,255,.45)}
+
+/* 3D coverflow slider */
+.cap-slider{position:relative;display:flex;align-items:center;gap:10px;padding-bottom:30px;outline:none}
+.s3d-stage{position:relative;flex:1;height:340px;perspective:1500px;overflow:hidden;cursor:grab}
+.s3d-stage:active{cursor:grabbing}
+.s3d-track{position:absolute;inset:0;transform-style:preserve-3d}
+.s3d-slide{position:absolute;top:50%;left:50%;width:min(360px,84%);transition:transform .6s cubic-bezier(.2,.8,.25,1),opacity .5s;will-change:transform,opacity;cursor:pointer;user-select:none}
+.s3d-nav{flex:0 0 auto;width:48px;height:48px;border-radius:50%;border:1px solid var(--line2);background:var(--panel);color:var(--text);font-size:26px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(8px);transition:.2s;z-index:6}
+.s3d-nav:hover{border-color:var(--violet);box-shadow:var(--glow);transform:translateY(-2px)}
+.s3d-dots{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:8px}
+.s3d-dot{width:8px;height:8px;border-radius:50%;background:var(--line2);cursor:pointer;transition:.25s;border:none;padding:0}
+.s3d-dot.active{background:var(--grad);width:24px;border-radius:5px}
+@media(max-width:620px){.s3d-stage{height:380px}.s3d-nav{width:42px;height:42px;font-size:22px}}
+
+/* glowing feature cards */
+.s3d-slide.fc-slot{background:none!important;border:none!important;box-shadow:none!important;padding:0!important;backdrop-filter:none!important}
+.s3d-slide.fc-slot::before,.s3d-slide.fc-slot::after{display:none!important}
+.fc-glow{position:absolute;inset:0;border-radius:40px;filter:blur(45px);opacity:.55;pointer-events:none;z-index:0;transition:opacity .35s}
+.s3d-slide.fc-slot:hover .fc-glow{opacity:.9}
+.fc-card{position:relative;z-index:1;min-height:300px;border:4px solid transparent;border-radius:40px;overflow:hidden;padding:28px;display:flex;flex-direction:column;justify-content:space-between}
+.fc-text h4{margin-bottom:10px}
+@media(max-width:620px){.fc-card{min-height:260px}}
+
+
+
+/* full What-I-do treatment for every card */
+:root{--fc-inner:#121226}
+[data-theme="light"]{--fc-inner:#E7EAF7}
+.fc-slot-all{position:relative}
+.fc-slot-all>.fc-glow{position:absolute;inset:0;border-radius:32px;filter:blur(45px);opacity:.5;pointer-events:none;z-index:0;transition:opacity .35s}
+.fc-slot-all:hover>.fc-glow{opacity:.82}
+.fc-card-all{position:relative;z-index:1;border:4px solid transparent!important;background:linear-gradient(var(--fc-inner),var(--fc-inner)) padding-box,var(--cardgrad,var(--grad)) border-box!important;border-radius:32px!important;overflow:hidden;backdrop-filter:none!important;box-shadow:none!important}
+.fc-card-all::before,.fc-card-all::after{display:none!important}
+.fc-card-all:hover{border-color:transparent!important;box-shadow:none!important}
 </style>
 <link rel="canonical" href="https://www.jaisondsouza.com/">
 <meta property="og:image:width" content="1200">
@@ -311,15 +345,7 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
   </div></section>
   <section id="work"><div class="container">
     <div class="sec-head" data-rv><span class="eyebrow">What I do</span><h2>The toolkit, applied.</h2><p>Nine disciplines I bring to every engagement to keep delivery predictable.</p></div>
-    <div class="cap-grid"><article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-strategy"></i></div><h4>Technical project plans &amp; roadmaps</h4><p>Plans, milestones, and release schedules teams can actually run against.</p></article>
-<article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-kanban"></i></div><h4>Agile / Scrum / Kanban</h4><p>Sprint planning, ceremonies, and flow tuned to how the team really works.</p></article>
-<article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-gear-six"></i></div><h4>JIRA administration &amp; automation</h4><p>Workflows and automation rules that erase hours of manual sprint admin.</p></article>
-<article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-tree-structure"></i></div><h4>WBS &amp; resource planning</h4><p>Breaking scope into work, then matching it to the people and time available.</p></article>
-<article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-warning-octagon"></i></div><h4>Risk, dependency &amp; issue management</h4><p>Risk registers and dependency trackers that surface trouble before it lands.</p></article>
-<article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-rocket-launch"></i></div><h4>Release readiness &amp; QA oversight</h4><p>Go/no-go gates and UAT that keep defects out of production.</p></article>
-<article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-chart-line-up"></i></div><h4>Forecasting &amp; estimation</h4><p>Commitments backed by data &mdash; 95%+ forecast accuracy over 24 months.</p></article>
-<article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-presentation-chart"></i></div><h4>Executive communication</h4><p>Status, risks, and mitigation framed for the people who fund the work.</p></article>
-<article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-arrows-clockwise"></i></div><h4>Retrospectives &amp; process optimization</h4><p>Turning postmortems and findings into systemic fixes that stick.</p></article></div>
+    <div class="cap-slider" data-rv id="capSlider"><button class="s3d-nav prev" aria-label="Previous">‹</button><div class="s3d-stage"><div class="s3d-track"><article class="gcard cap s3d-slide"><div class="capicon"><i class="ph-light ph-strategy"></i></div><h4>Technical project plans &amp; roadmaps</h4><p>Plans, milestones, and release schedules teams can actually run against.</p></article><article class="gcard cap s3d-slide"><div class="capicon"><i class="ph-light ph-kanban"></i></div><h4>Agile / Scrum / Kanban</h4><p>Sprint planning, ceremonies, and flow tuned to how the team really works.</p></article><article class="gcard cap s3d-slide"><div class="capicon"><i class="ph-light ph-gear-six"></i></div><h4>JIRA administration &amp; automation</h4><p>Workflows and automation rules that erase hours of manual sprint admin.</p></article><article class="gcard cap s3d-slide"><div class="capicon"><i class="ph-light ph-tree-structure"></i></div><h4>WBS &amp; resource planning</h4><p>Breaking scope into work, then matching it to the people and time available.</p></article><article class="gcard cap s3d-slide"><div class="capicon"><i class="ph-light ph-warning-octagon"></i></div><h4>Risk, dependency &amp; issue management</h4><p>Risk registers and dependency trackers that surface trouble before it lands.</p></article><article class="gcard cap s3d-slide"><div class="capicon"><i class="ph-light ph-rocket-launch"></i></div><h4>Release readiness &amp; QA oversight</h4><p>Go/no-go gates and UAT that keep defects out of production.</p></article><article class="gcard cap s3d-slide"><div class="capicon"><i class="ph-light ph-chart-line-up"></i></div><h4>Forecasting &amp; estimation</h4><p>Commitments backed by data &mdash; 95%+ forecast accuracy over 24 months.</p></article><article class="gcard cap s3d-slide"><div class="capicon"><i class="ph-light ph-presentation-chart"></i></div><h4>Executive communication</h4><p>Status, risks, and mitigation framed for the people who fund the work.</p></article><article class="gcard cap s3d-slide"><div class="capicon"><i class="ph-light ph-arrows-clockwise"></i></div><h4>Retrospectives &amp; process optimization</h4><p>Turning postmortems and findings into systemic fixes that stick.</p></article></div></div><button class="s3d-nav next" aria-label="Next">›</button><div class="s3d-dots"></div></div>
   </div></section>
   <section id="approach" style="padding-top:0"><div class="container">
     <div class="sec-head" data-rv><span class="eyebrow">How I work</span><h2>From tangle to trusted date.</h2></div>
@@ -506,6 +532,9 @@ function startSite(){
     ['.stats','.cap-grid','.steps-grid','.badges'].forEach(sel=>{const g=document.querySelector(sel);if(!g)return;gsap.to(g.querySelectorAll('[data-rv]'),{opacity:1,y:0,filter:'blur(0px)',duration:.8,ease:'power3.out',stagger:.08,scrollTrigger:Object.assign({trigger:g,start:'top 84%'},stConf)});});
     gsap.timeline().to('[data-rv-hero]',{opacity:1,y:0,filter:'blur(0px)',duration:.9,ease:'power3.out',stagger:.12,delay:.1});
     gsap.to('[data-orb]',{y:-20,duration:3,repeat:-1,yoyo:true,ease:'power1.inOut',stagger:.4});
+    // scrubbed parallax pass (layers drift at scroll-linked speeds)
+    var par=function(sel,dist){gsap.utils.toArray(sel).forEach(function(el){gsap.fromTo(el,{y:dist},{y:-dist,ease:'none',scrollTrigger:Object.assign({trigger:el,start:'top bottom',end:'bottom top',scrub:0.6},stConf)});});};
+    par('.sec-head .eyebrow',38);par('.sec-head h2',20);par('.sec-head p',-14);
   }
   gsap.utils.toArray('[data-count]').forEach(el=>{const txt=el.textContent;const m=txt.match(/\d+(\.\d+)?/);if(!m)return;const target=parseFloat(m[0]),pre=txt.slice(0,m.index),post=txt.slice(m.index+m[0].length);const o={v:0};gsap.to(o,{v:target,duration:1.4,ease:'power2.out',scrollTrigger:Object.assign({trigger:el,start:'top 90%',once:true},stConf),onUpdate(){el.textContent=pre+Math.round(o.v)+post;},onComplete(){el.textContent=txt;}});});
   document.querySelectorAll('.badge').forEach(b=>{b.addEventListener('pointermove',e=>{const r=b.getBoundingClientRect();b.style.setProperty('--mx',(e.clientX-r.left)+'px');b.style.setProperty('--my',(e.clientY-r.top)+'px');});});
@@ -522,9 +551,80 @@ window.addEventListener('load',()=>{if(typeof gsap==='undefined'){var _p=documen
     c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');});
   });
   if(reduce)return;
-  document.querySelectorAll('.cap,.step,.edu-card,.stat').forEach(function(c){
+  document.querySelectorAll('.step,.edu-card,.stat').forEach(function(c){
     c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();var px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(820px) rotateX('+(-py*6)+'deg) rotateY('+(px*6)+'deg) translateY(-7px)';});
     c.addEventListener('pointerleave',function(){c.style.transform='';});
+  });
+})();</script>
+<script>(function(){
+  var root=document.getElementById('capSlider');if(!root)return;
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  var stage=root.querySelector('.s3d-stage'),track=root.querySelector('.s3d-track');
+  var slides=[].slice.call(track.querySelectorAll('.s3d-slide')),n=slides.length;
+  var dotsWrap=root.querySelector('.s3d-dots'),active=0,auto=null,dragging=false,startX=0,moved=0;
+  slides.forEach(function(_,i){var d=document.createElement('button');d.className='s3d-dot'+(i===0?' active':'');d.setAttribute('aria-label','Go to capability '+(i+1));d.addEventListener('click',function(){go(i);});dotsWrap.appendChild(d);});
+  var dots=[].slice.call(dotsWrap.children);
+  function layout(){
+    var W=stage.clientWidth,spacing=Math.min(260,W*0.42),rot=reduce?0:34;
+    slides.forEach(function(s,i){var off=i-active;if(off>n/2)off-=n;if(off<-n/2)off+=n;var ao=Math.abs(off);
+      var tz=reduce?0:(-ao*180),sc=Math.max(.6,1-ao*0.13);
+      s.style.transform='translate(-50%,-50%) translateX('+(off*spacing)+'px) translateZ('+tz+'px) rotateY('+(off*-rot)+'deg) scale('+sc+')';
+      s.style.opacity=ao>2?'0':(off===0?'1':'.62');s.style.zIndex=String(100-ao);s.style.pointerEvents=ao>2?'none':'auto';s.setAttribute('aria-hidden',off===0?'false':'true');});
+    dots.forEach(function(d,i){d.classList.toggle('active',i===active);});
+  }
+  function go(i){active=(i%n+n)%n;layout();restart();}
+  function next(){go(active+1);}function prev(){go(active-1);}
+  root.querySelector('.next').addEventListener('click',next);
+  root.querySelector('.prev').addEventListener('click',prev);
+  slides.forEach(function(s,i){s.addEventListener('click',function(){if(Math.abs(moved)>6)return;if(i!==active)go(i);});});
+  stage.addEventListener('pointerdown',function(e){dragging=true;startX=e.clientX;moved=0;stop();try{stage.setPointerCapture(e.pointerId);}catch(_){}});
+  stage.addEventListener('pointermove',function(e){if(dragging)moved=e.clientX-startX;});
+  function end(){if(!dragging)return;dragging=false;if(moved>50)prev();else if(moved<-50)next();else restart();}
+  stage.addEventListener('pointerup',end);stage.addEventListener('pointercancel',end);stage.addEventListener('pointerleave',end);
+  root.setAttribute('tabindex','0');root.addEventListener('keydown',function(e){if(e.key==='ArrowLeft')prev();else if(e.key==='ArrowRight')next();});
+  function start(){if(reduce)return;stop();auto=setInterval(next,4500);}
+  function stop(){if(auto){clearInterval(auto);auto=null;}}
+  function restart(){stop();start();}
+  root.addEventListener('mouseenter',stop);root.addEventListener('mouseleave',start);
+  root.addEventListener('focusin',stop);root.addEventListener('focusout',start);
+  addEventListener('resize',layout);
+  layout();start();
+})();</script>
+<script>(function(){
+  var slides=document.querySelectorAll('#capSlider .s3d-slide');if(!slides.length)return;
+  var GR=['linear-gradient(137deg,#FF3D77 0%,#FFB1CE 45%,#FF9D3C 100%)',
+          'linear-gradient(137deg,#FFFFFF 0%,#7DD3FC 45%,#06B6D4 100%)',
+          'linear-gradient(137deg,#4361EE 0%,#E0AEFF 45%,#F72585 100%)'];
+  slides.forEach(function(s,i){
+    if(s.classList.contains('fc-slot'))return;
+    var g=GR[i%GR.length];
+    var icon=s.querySelector('.capicon'),hh=s.querySelector('h4'),pp=s.querySelector('p');
+    var card=document.createElement('div');card.className='fc-card';
+    card.style.background='linear-gradient(var(--fc-inner),var(--fc-inner)) padding-box,'+g+' border-box';
+    if(icon)card.appendChild(icon);
+    var txt=document.createElement('div');txt.className='fc-text';if(hh)txt.appendChild(hh);if(pp)txt.appendChild(pp);card.appendChild(txt);
+    var glow=document.createElement('span');glow.className='fc-glow';glow.style.background=g;
+    s.innerHTML='';s.appendChild(glow);s.appendChild(card);s.classList.add('fc-slot');
+  });
+})();</script>
+<script>(function(){
+  var GR=['linear-gradient(137deg,#FF3D77 0%,#FFB1CE 45%,#FF9D3C 100%)',
+          'linear-gradient(137deg,#FFFFFF 0%,#7DD3FC 45%,#06B6D4 100%)',
+          'linear-gradient(137deg,#4361EE 0%,#E0AEFF 45%,#F72585 100%)',
+          'linear-gradient(137deg,#7C5CFF 0%,#3B82F6 45%,#22D3EE 100%)',
+          'linear-gradient(137deg,#22D3EE 0%,#A78BFA 50%,#F472B6 100%)'];
+  var k=0;
+  var cards=document.querySelectorAll('.gcard:not(.fc-slot):not(.fc-card-all), .stat');
+  cards.forEach(function(card){
+    if(card.classList.contains('fc-card-all')||card.closest('.fc-slot-all'))return;
+    var wrap=document.createElement('div');wrap.className='fc-slot-all';
+    wrap.style.setProperty('--cardgrad',GR[k%GR.length]);k++;
+    if(card.classList.contains('art-wide'))wrap.style.gridColumn='1/-1';
+    if(card.hasAttribute('data-rv')){wrap.setAttribute('data-rv','');card.removeAttribute('data-rv');}
+    card.parentNode.insertBefore(wrap,card);
+    var glow=document.createElement('span');glow.className='fc-glow';glow.style.background='var(--cardgrad)';
+    wrap.appendChild(glow);wrap.appendChild(card);
+    card.classList.add('fc-card-all');
   });
 })();</script>
 </body></html>
