@@ -78,7 +78,7 @@ nav.scrolled{background:color-mix(in srgb,var(--bg) 72%,transparent);backdrop-fi
 .tray{position:fixed;inset:0;z-index:115;background:color-mix(in srgb,var(--bg) 96%,transparent);backdrop-filter:blur(18px);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:26px;opacity:0;visibility:hidden;transition:opacity .35s}
 .tray.open{opacity:1;visibility:visible}
 .tray a{font-size:26px;font-weight:600}.tray a:hover{color:var(--cyan)}
-.tray .close{position:absolute;top:24px;right:28px;font-size:30px;color:var(--muted);cursor:pointer;background:none;border:none}
+.tray .close{position:absolute;top:20px;right:20px;width:50px;height:50px;border-radius:50%;border:1px solid var(--line2);background:var(--panel);color:var(--text);font-size:30px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:10;-webkit-tap-highlight-color:transparent}.tray .close:hover{border-color:var(--violet);box-shadow:var(--glow)}
 main{position:relative;z-index:1}
 .hero{min-height:100svh;display:flex;align-items:center;padding:120px 0 60px;position:relative}
 .hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:60px;align-items:center}
@@ -219,6 +219,29 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
 @media(max-width:760px){.practice-grid{grid-template-columns:1fr}.road-cols,.road-row{grid-template-columns:110px repeat(4,1fr)}.road-row{grid-template-columns:110px 1fr}}
 @media(max-width:620px){.board{grid-template-columns:repeat(2,1fr)}}
 @media (prefers-reduced-motion:reduce){.practice.pre .bar{transform:none}.practice.pre .kc,.practice.pre .rtable tbody tr{opacity:1;transform:none}}
+
+/* stronger card hover */
+.gcard{position:relative}
+.gcard{transition:transform .35s cubic-bezier(.2,.85,.25,1),border-color .3s,box-shadow .3s,background .3s}
+.gcard:hover{transform:translateY(-7px) scale(1.014);border-color:color-mix(in srgb,var(--violet) 60%,var(--line2));box-shadow:0 36px 84px -28px rgba(124,92,255,.6),0 0 0 1px rgba(124,92,255,.25)}
+.gcard::before{content:"";position:absolute;left:16px;right:16px;top:0;height:2px;border-radius:2px;background:var(--grad);opacity:0;transition:opacity .3s;box-shadow:0 0 12px rgba(124,92,255,.6)}
+.gcard:hover::before{opacity:.95}
+.gcard:not(.badge)::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(124,92,255,.17),transparent 60%)}
+.gcard:not(.badge):hover::after{opacity:1}
+.cap .capicon{transition:transform .3s,color .3s,border-color .3s,box-shadow .3s}
+.cap:hover .capicon{transform:translateY(-3px) scale(1.12) rotate(-4deg);color:#fff;border-color:var(--cyan);box-shadow:0 0 26px rgba(34,211,238,.55)}
+.step:hover .stepn{color:var(--cyan);text-shadow:0 0 14px rgba(34,211,238,.6)}
+.minicert,.edu-card,.tool{transition:transform .25s cubic-bezier(.2,.85,.25,1),border-color .25s,box-shadow .25s,color .25s}
+.tool:hover{transform:translateY(-3px) scale(1.04);border-color:var(--violet);color:var(--text);box-shadow:var(--glow)}
+
+/* stat cards get the same hover treatment */
+.stat{position:relative;transition:transform .35s cubic-bezier(.2,.85,.25,1),border-color .3s,box-shadow .3s,background .3s}
+.stat:hover{transform:translateY(-7px) scale(1.014);border-color:color-mix(in srgb,var(--violet) 60%,var(--line2));box-shadow:0 36px 84px -28px rgba(124,92,255,.6),0 0 0 1px rgba(124,92,255,.25)}
+.stat::before{content:"";position:absolute;left:16px;right:16px;top:0;height:2px;border-radius:2px;background:var(--grad);opacity:0;transition:opacity .3s;box-shadow:0 0 12px rgba(124,92,255,.6)}
+.stat:hover::before{opacity:.95}
+.stat::after{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .35s;background:radial-gradient(280px circle at var(--mx,50%) var(--my,50%),rgba(124,92,255,.17),transparent 60%)}
+.stat:hover::after{opacity:1}
+.stat:hover .snum{text-shadow:0 0 22px rgba(124,92,255,.45)}
 </style>
 <link rel="canonical" href="https://www.jaisondsouza.com/">
 <meta property="og:image:width" content="1200">
@@ -241,7 +264,7 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
   </div>
   <button class="burger" id="burger" aria-label="Open menu"><i class="ph-light ph-list"></i></button>
 </nav>
-<div class="tray" id="tray"><button class="close" id="trayClose" aria-label="Close menu"><i class="ph-light ph-x"></i></button>
+<div class="tray" id="tray"><button class="close" id="trayClose" aria-label="Close menu">&times;</button>
   <a href="#about">About</a><a href="#work">Capabilities</a><a href="#experience">Experience</a><a href="#credentials">Credentials</a><a href="#contact">Let's talk</a>
   <button class="theme-toggle" id="themeBtn2" aria-label="Toggle theme" style="margin-top:10px"><i class="theme-ico ph-light ph-sun"></i></button>
 </div>
@@ -438,6 +461,7 @@ const nav=document.getElementById('nav');const onScrollNav=y=>nav.classList.togg
 const burger=document.getElementById('burger'),tray=document.getElementById('tray'),trayClose=document.getElementById('trayClose');
 burger.addEventListener('click',()=>tray.classList.add('open'));trayClose.addEventListener('click',()=>tray.classList.remove('open'));
 tray.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>tray.classList.remove('open')));
+tray.addEventListener('click',function(e){if(e.target===tray)tray.classList.remove('open');});
 
 
 /* progress bar */
@@ -492,4 +516,15 @@ window.addEventListener('load',()=>{if(typeof gsap==='undefined'){var _p=documen
   gsap.to(o,{p:100,duration:reduce?.3:2,ease:'power2.out',onUpdate(){const v=Math.round(o.p);bar.style.width=v+'%';if(pct)pct.textContent=v+'%';},onComplete(){gsap.to(pre,{opacity:0,scale:.92,duration:reduce?.2:.9,ease:'power2.inOut',onComplete(){pre.style.display='none';}});startSite();}});});
 </script>
 <script>(function(){var s=document.getElementById('practice');if(!s)return;if(matchMedia('(prefers-reduced-motion:reduce)').matches)return;s.classList.add('pre');var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){s.classList.add('drawn');io.disconnect();}});},{threshold:.2});io.observe(s);})();</script>
+<script>(function(){
+  var reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  document.querySelectorAll('.gcard,.stat').forEach(function(c){
+    c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();c.style.setProperty('--mx',(e.clientX-r.left)+'px');c.style.setProperty('--my',(e.clientY-r.top)+'px');});
+  });
+  if(reduce)return;
+  document.querySelectorAll('.cap,.step,.edu-card,.stat').forEach(function(c){
+    c.addEventListener('pointermove',function(e){var r=c.getBoundingClientRect();var px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;c.style.transform='perspective(820px) rotateX('+(-py*6)+'deg) rotateY('+(px*6)+'deg) translateY(-7px)';});
+    c.addEventListener('pointerleave',function(){c.style.transform='';});
+  });
+})();</script>
 </body></html>
