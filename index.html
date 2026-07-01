@@ -184,7 +184,8 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
  *{animation:none!important;transition:none!important}
  [data-rv],[data-rv-hero]{opacity:1!important;transform:none!important;filter:none!important}
 }
-.skip{position:fixed;left:14px;top:-60px;z-index:1001;background:var(--violet);color:#fff;font-size:13px;font-weight:600;padding:10px 16px;border-radius:10px;text-decoration:none;transition:top .2s}.skip:focus{top:14px}@media print{#preloader,.bgwrap,nav,.tray{display:none!important}[data-rv],[data-rv-hero]{opacity:1!important;transform:none!important;filter:none!important}body{background:#fff;color:#000}.gcard{box-shadow:none;border:1px solid #ccc}}.avail{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:30px;border:1px solid var(--line2);background:var(--panel);backdrop-filter:blur(8px);font-size:12.5px;font-weight:500;color:var(--text2);margin-bottom:22px}.avail .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.5);animation:pulse 2.2s infinite}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}70%{box-shadow:0 0 0 9px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:130;background:var(--grad);box-shadow:var(--glow);transition:width .12s linear}.navlinks a.nl.active{color:var(--text)}.navlinks a.nl.active::after{width:100%}.cform-status{margin-top:14px;font-size:14px;min-height:18px;line-height:1.4}.cform-status.ok{color:#22c55e}.cform-status.err{color:#f87171}
+.skip{position:fixed;left:14px;top:-60px;z-index:1001;background:var(--violet);color:#fff;font-size:13px;font-weight:600;padding:10px 16px;border-radius:10px;text-decoration:none;transition:top .2s}.skip:focus{top:14px}@media print{#preloader,.bgwrap,nav,.tray{display:none!important}[data-rv],[data-rv-hero]{opacity:1!important;transform:none!important;filter:none!important}body{background:#fff;color:#000}.gcard{box-shadow:none;border:1px solid #ccc}}.avail{display:inline-flex;align-items:center;gap:8px;padding:7px 14px;border-radius:30px;border:1px solid var(--line2);background:var(--panel);backdrop-filter:blur(8px);font-size:12.5px;font-weight:500;color:var(--text2);margin-bottom:22px}.avail .dot{width:8px;height:8px;border-radius:50%;background:#22c55e;box-shadow:0 0 0 0 rgba(34,197,94,.5);animation:pulse 2.2s infinite}@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(34,197,94,.5)}70%{box-shadow:0 0 0 9px rgba(34,197,94,0)}100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}}#progress{position:fixed;top:0;left:0;height:3px;width:0;z-index:130;background:var(--grad);box-shadow:var(--glow);transition:width .12s linear}.navlinks a.nl.active{color:var(--text)}.navlinks a.nl.active::after{width:100%}.hp{position:absolute!important;left:-9999px!important;top:auto;width:1px;height:1px;overflow:hidden}
+.cform-status{margin-top:14px;font-size:14px;min-height:18px;line-height:1.4}.cform-status.ok{color:#22c55e}.cform-status.err{color:#f87171}
 /* in practice / artifacts */
 .practice-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
 .art{padding:26px 28px}.art-wide{grid-column:1/-1}
@@ -416,6 +417,8 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
         <label for="cf-name">Name</label><input id="cf-name" type="text" name="name" placeholder="Your name" required>
         <label for="cf-email">Email</label><input id="cf-email" type="email" name="email" placeholder="you@company.com" required>
         <label for="cf-message">Message</label><textarea id="cf-message" name="message" placeholder="What would you like to discuss?" required></textarea>
+        <div class="hp" aria-hidden="true"><label>Leave this field empty</label><input type="text" name="_gotcha" tabindex="-1" autocomplete="off"></div>
+        <label for="cf-captcha">Human check &mdash; <span id="cfQ">what is 3 + 4?</span></label><input id="cf-captcha" type="text" inputmode="numeric" name="captcha_answer" placeholder="Type the answer" autocomplete="off" required>
         <button class="btn btn-primary" type="submit" id="cfBtn" style="width:100%;justify-content:center">Send message <i class="ph-light ph-paper-plane-tilt"></i></button>
         <p class="cform-status" id="cfStatus" role="status" aria-live="polite"></p>
       </form>
@@ -508,11 +511,18 @@ updateProgress(0,1);
    else if(e.key==='Tab'){var els=f();if(!els.length)return;var first=els[0],last=els[els.length-1];
      if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
      else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}}});})();
-/* AJAX contact form */
+/* AJAX contact form + captcha (honeypot + human check) */
 (function(){var form=document.getElementById('contactForm');if(!form)return;
- form.addEventListener('submit',function(e){e.preventDefault();var btn=document.getElementById('cfBtn'),st=document.getElementById('cfStatus');var orig=btn.innerHTML;btn.disabled=true;btn.style.opacity='.7';btn.textContent='Sending…';st.className='cform-status';st.textContent='';
-   fetch(form.action,{method:'POST',body:new FormData(form),headers:{'Accept':'application/json'}}).then(function(r){
-     if(r.ok){st.className='cform-status ok';st.textContent="Thanks — your message is on its way. I'll reply soon.";form.reset();}
+ var qEl=document.getElementById('cfQ'),ansEl=document.getElementById('cf-captcha'),expected=0;
+ function newCaptcha(){var a=Math.floor(Math.random()*8)+2,b=Math.floor(Math.random()*8)+1;expected=a+b;if(qEl)qEl.textContent='what is '+a+' + '+b+'?';if(ansEl)ansEl.value='';}
+ newCaptcha();
+ form.addEventListener('submit',function(e){e.preventDefault();var btn=document.getElementById('cfBtn'),st=document.getElementById('cfStatus');var orig=btn.innerHTML;
+   var hp=form.querySelector('[name="_gotcha"]');if(hp&&hp.value){return;}
+   if(!ansEl||parseInt(ansEl.value,10)!==expected){st.className='cform-status err';st.textContent='Please answer the human-check question correctly.';newCaptcha();if(ansEl)ansEl.focus();return;}
+   btn.disabled=true;btn.style.opacity='.7';btn.textContent='Sending…';st.className='cform-status';st.textContent='';
+   var fd=new FormData(form);fd.delete('captcha_answer');
+   fetch(form.action,{method:'POST',body:fd,headers:{'Accept':'application/json'}}).then(function(r){
+     if(r.ok){st.className='cform-status ok';st.textContent="Thanks — your message is on its way. I'll reply soon.";form.reset();newCaptcha();}
      else{return r.json().then(function(d){st.className='cform-status err';st.textContent=(d.errors&&d.errors[0]&&d.errors[0].message)||'Something went wrong — please email me directly.';});}
    }).catch(function(){st.className='cform-status err';st.textContent='Network error — please email me directly.';})
    .then(function(){btn.disabled=false;btn.style.opacity='';btn.innerHTML=orig;});});})();
