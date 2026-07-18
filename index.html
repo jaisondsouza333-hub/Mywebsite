@@ -277,6 +277,11 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
 .fc-card-all{position:relative;z-index:1;border:4px solid transparent!important;background:linear-gradient(var(--fc-inner),var(--fc-inner)) padding-box,var(--cardgrad,var(--grad)) border-box!important;border-radius:32px!important;overflow:hidden;backdrop-filter:none!important;box-shadow:none!important}
 .fc-card-all::before,.fc-card-all::after{display:none!important}
 .fc-card-all:hover{border-color:transparent!important;box-shadow:none!important}
+.ai-tools{margin-top:34px}
+.ai-tool{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:30px;border:1px solid var(--line2);background:var(--panel);font-size:13.5px;color:var(--text2);backdrop-filter:blur(8px);transition:.25s}
+.ai-tool:hover{border-color:var(--violet);color:var(--text);box-shadow:var(--glow);transform:translateY(-2px)}
+.ai-tool i{font-size:16px;color:var(--cyan)}
+.ai-tools-label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:36px 0 4px;display:block}
 </style>
 <link rel="canonical" href="https://www.jaisondsouza.com/">
 <meta property="og:image:width" content="1200">
@@ -293,14 +298,14 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
 <nav id="nav">
   <a class="brand" href="#top">Jaison <b>Dsouza</b></a>
   <div class="navlinks">
-    <a class="nl" href="#about">About</a><a class="nl" href="#work">Capabilities</a><a class="nl" href="#experience">Experience</a><a class="nl" href="#credentials">Credentials</a>
+    <a class="nl" href="#about">About</a><a class="nl" href="#work">Capabilities</a><a class="nl" href="#ai">AI</a><a class="nl" href="#experience">Experience</a><a class="nl" href="#credentials">Credentials</a>
     <a class="nav-cta" href="#contact">Let's talk</a>
     <button class="theme-toggle" id="themeBtn" aria-label="Toggle theme"><i class="theme-ico ph-light ph-sun"></i></button>
   </div>
   <button class="burger" id="burger" aria-label="Open menu"><i class="ph-light ph-list"></i></button>
 </nav>
 <div class="tray" id="tray"><button class="close" id="trayClose" aria-label="Close menu">&times;</button>
-  <a href="#about">About</a><a href="#work">Capabilities</a><a href="#experience">Experience</a><a href="#credentials">Credentials</a><a href="#contact">Let's talk</a>
+  <a href="#about">About</a><a href="#work">Capabilities</a><a href="#ai">AI</a><a href="#experience">Experience</a><a href="#credentials">Credentials</a><a href="#contact">Let's talk</a>
   <button class="theme-toggle" id="themeBtn2" aria-label="Toggle theme" style="margin-top:10px"><i class="theme-ico ph-light ph-sun"></i></button>
 </div>
 <main id="top" data-scroll-container>
@@ -354,6 +359,42 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
 <article class="gcard step" data-rv><span class="stepn">02</span><h4>Surface risk early</h4><p>A living risk register and release-readiness gates mean trouble shows up in a standup, not on launch day.</p></article>
 <article class="gcard step" data-rv><span class="stepn">03</span><h4>Communicate to the audience</h4><p>Engineers get detail; executives get decisions and trade-offs. Everyone always knows where things stand.</p></article>
 <article class="gcard step" data-rv><span class="stepn">04</span><h4>Close the loop</h4><p>Retrospectives and postmortems turn into systemic fixes, so the same defect or delay doesn't return next cycle.</p></article></div>
+  </div></section>
+  <section id="ai"><div class="container">
+    <div class="sec-head" data-rv><span class="eyebrow">AI in practice</span><h2>Delivery, accelerated by AI.</h2><p>I use AI tools as a delivery multiplier &mdash; shipping working software, dashboards, and plans faster, from first prompt to production.</p></div>
+    <div class="stats" style="grid-template-columns:repeat(3,1fr);margin-bottom:36px">
+      <div class="stat" data-rv><div class="snum">4&times;</div><div class="slbl">Faster deck &amp;<br>proposal turnaround</div></div>
+      <div class="stat" data-rv><div class="snum">4 hrs</div><div class="slbl">Manual work<br>automated / week</div></div>
+      <div class="stat" data-rv><div class="snum">&lt;1 day</div><div class="slbl">Prompt to<br>clickable prototype</div></div>
+    </div>
+    <div class="cap-grid">
+      <article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-globe-hemisphere-west"></i></div><h4>End-to-end web builds</h4><p>Sites taken from a blank canvas through design and visualization to a live, published product &mdash; deployed on Vercel, Netlify, and custom domains.</p></article>
+      <article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-chart-donut"></i></div><h4>AI metrics dashboards</h4><p>Analytics dashboards that turn raw delivery and product data into decision-ready views &mdash; designed, built, and iterated with AI.</p></article>
+      <article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-strategy"></i></div><h4>AI-built project plans</h4><p>Whole project plans &mdash; WBS, roadmaps, estimates, Gantt charts, and resource models &mdash; drafted and stress-tested with AI, then held to a date.</p></article>
+      <article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-cursor-click"></i></div><h4>Rapid prototyping</h4><p>Prompts turned into working interactive HTML and React mockups &mdash; the fast path from an idea to something stakeholders can click.</p></article>
+      <article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-file-text"></i></div><h4>Document &amp; deck automation</h4><p>Proposals, SOWs, and pitch decks drafted, structured, and polished with AI &mdash; a fraction of the usual turnaround, without losing rigor.</p></article>
+      <article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-robot"></i></div><h4>Agentic workflows</h4><p>Agent-driven automations that take repetitive, multi-step work off people&rsquo;s plates and run it end to end.</p></article>
+      <article class="gcard cap" data-rv><div class="capicon"><i class="ph-light ph-users-three"></i></div><h4>AI adoption across the team</h4><p>Driving how a delivery team adopts AI &mdash; setting standard workflows and guardrails, and tracking adoption and impact so the gains are measured, not assumed.</p></article>
+    </div>
+    <span class="ai-tools-label" data-rv>Tools I work with</span>
+    <div class="tools ai-tools" data-rv aria-label="AI tools I work with">
+      <div class="ttrack" aria-hidden="false">
+        <span class="ai-tool"><i class="ph-light ph-sparkle"></i>Claude</span>
+        <span class="ai-tool"><i class="ph-light ph-terminal-window"></i>OpenAI Codex</span>
+        <span class="ai-tool"><i class="ph-light ph-chat-circle"></i>ChatGPT</span>
+        <span class="ai-tool"><i class="ph-light ph-star-four"></i>Gemini</span>
+        <span class="ai-tool"><i class="ph-light ph-cursor"></i>Cursor</span>
+        <span class="ai-tool"><i class="ph-light ph-github-logo"></i>GitHub Copilot</span>
+        <span class="ai-tool"><i class="ph-light ph-wind"></i>Windsurf</span>
+        <span class="ai-tool" aria-hidden="true"><i class="ph-light ph-sparkle"></i>Claude</span>
+        <span class="ai-tool" aria-hidden="true"><i class="ph-light ph-terminal-window"></i>OpenAI Codex</span>
+        <span class="ai-tool" aria-hidden="true"><i class="ph-light ph-chat-circle"></i>ChatGPT</span>
+        <span class="ai-tool" aria-hidden="true"><i class="ph-light ph-star-four"></i>Gemini</span>
+        <span class="ai-tool" aria-hidden="true"><i class="ph-light ph-cursor"></i>Cursor</span>
+        <span class="ai-tool" aria-hidden="true"><i class="ph-light ph-github-logo"></i>GitHub Copilot</span>
+        <span class="ai-tool" aria-hidden="true"><i class="ph-light ph-wind"></i>Windsurf</span>
+      </div>
+    </div>
   </div></section>
   <section id="experience"><div class="container">
     <div class="sec-head" data-rv><span class="eyebrow">Track record</span><h2>Where the work landed.</h2></div>
