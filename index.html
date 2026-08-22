@@ -131,7 +131,7 @@ section{padding:clamp(64px,7vw,96px) 0;position:relative}
 .job{padding:30px 32px}
 .jhead{display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;margin-bottom:16px}
 .job h3{font-size:20px}.jorg{color:var(--cyan);font-size:14px;margin-top:5px;font-weight:500}
-.jwhen{font-size:13px;color:var(--muted);text-align:right}.jwhen span{display:block;color:var(--text2);margin-top:3px}
+.jwhen{font-size:14px;color:var(--text2);font-weight:500;text-align:right}.jwhen span{display:block;color:var(--text2);font-weight:400;margin-top:3px}
 .jbul{list-style:none;display:flex;flex-direction:column;gap:11px}
 .jbul li{position:relative;padding-left:22px;color:var(--text2);font-size:15px;line-height:1.6}
 .jbul li::before{content:"";position:absolute;left:0;top:9px;width:7px;height:7px;border-radius:50%;background:var(--grad);box-shadow:0 0 8px rgba(124,92,255,.7)}
@@ -153,7 +153,7 @@ section{padding:clamp(64px,7vw,96px) 0;position:relative}
 .edu-row{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .edu-card{padding:22px}.edu-card .deg{font-weight:600;font-size:16px}.edu-card .meta{color:var(--muted);font-size:13px;margin-top:6px}
 .tools{display:block;overflow:hidden;-webkit-mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent);mask-image:linear-gradient(90deg,transparent,#000 7%,#000 93%,transparent)}
-.ttrack{display:flex;gap:10px;width:max-content;animation:marq 38s linear infinite}
+.ttrack{display:flex;gap:30px;width:max-content;animation:marq 38s linear infinite}
 .tools:hover .ttrack{animation-play-state:paused}
 @keyframes marq{to{transform:translateX(-50%)}}
 .tool{flex-shrink:0;padding:10px 16px;border-radius:32px;border:1px solid var(--line2);background:var(--panel);font-size:14px;color:var(--text2);white-space:nowrap}
@@ -169,6 +169,7 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
 [data-rv],[data-rv-hero]{opacity:0;transform:translateY(40px);filter:blur(8px)}
 .is-rv-in{opacity:1!important;transform:none!important;filter:none!important}
 :focus-visible{outline:2px solid var(--violet);outline-offset:3px;border-radius:8px}
+@media(min-width:981px){.tray{display:none}}
 @media(max-width:980px){
  .hero-grid{grid-template-columns:1fr;gap:44px;text-align:center}
  .hero .sub{margin-left:auto;margin-right:auto}.cta-row,.mini-stats{justify-content:center}
@@ -202,7 +203,7 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
 .bar{position:absolute;top:-1px;bottom:-1px;border-radius:8px;background:var(--grad);box-shadow:0 0 14px rgba(124,92,255,.45);transform-origin:left;transition:transform .9s cubic-bezier(.2,.8,.2,1)}
 .board{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
 .bcol{background:var(--panel2);border:1px solid var(--line);border-radius:12px;padding:10px;min-height:118px}
-.bcol h5{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:9px;font-weight:600}
+.bcol h4{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.06em;margin-bottom:9px;font-weight:600}
 .kc{background:var(--panel);border:1px solid var(--line2);border-radius:8px;padding:8px 10px;font-size:12px;margin-bottom:8px;color:var(--text2);transition:opacity .5s,transform .5s}
 .rtable{width:100%;border-collapse:collapse;font-size:13px}
 .rtable th{text-align:left;color:var(--muted);font-weight:500;font-size:11px;text-transform:uppercase;letter-spacing:.05em;padding:6px 8px;border-bottom:1px solid var(--line)}
@@ -255,7 +256,7 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
 .s3d-nav{flex:0 0 auto;width:48px;height:48px;border-radius:50%;border:1px solid var(--line2);background:var(--panel);color:var(--text);font-size:24px;line-height:1;display:flex;align-items:center;justify-content:center;cursor:pointer;backdrop-filter:blur(8px);transition:.2s;z-index:6}
 .s3d-nav:hover{border-color:var(--violet);box-shadow:var(--glow);transform:translateY(-2px)}
 .s3d-dots{position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:center;gap:2px}
-.s3d-dot{width:10px;height:10px;box-sizing:content-box;padding:7px;border-radius:50%;background:var(--line2);background-clip:content-box;cursor:pointer;transition:.25s;border:none}.s3d-dot:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
+.s3d-dot{width:10px;height:10px;box-sizing:content-box;padding:7px;border-radius:50%;background:var(--muted);background-clip:content-box;cursor:pointer;transition:.25s;border:none}.s3d-dot:focus-visible{outline:2px solid var(--cyan);outline-offset:2px}
 .s3d-dot.active{background:var(--grad);background-clip:content-box;width:26px;border-radius:8px}
 @media(max-width:620px){.s3d-stage{height:380px;overflow:clip}.cap-slider{max-width:100%;overflow:clip}.s3d-nav{width:42px;height:42px;font-size:24px}}
 
@@ -280,7 +281,7 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
 .fc-card-all::before,.fc-card-all::after{display:none!important}
 .fc-card-all:hover{border-color:transparent!important;box-shadow:none!important}
 .ai-tools{margin-top:34px}
-.ai-tool{display:inline-flex;align-items:center;gap:8px;padding:9px 16px;border-radius:32px;border:1px solid var(--line2);background:var(--panel);font-size:14px;color:var(--text2);backdrop-filter:blur(8px);transition:.25s}
+.ai-tool{display:inline-flex;align-items:center;gap:8px;padding:10px 20px;border-radius:32px;border:1px solid var(--line2);background:var(--panel);font-size:14px;color:var(--text2);backdrop-filter:blur(8px);transition:.25s}
 .ai-tool:hover{border-color:var(--violet);color:var(--text);box-shadow:var(--glow);transform:translateY(-2px)}
 .ai-tool i{font-size:16px;color:var(--cyan)}
 .ai-tools-label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);margin:36px 0 4px;display:block}
@@ -422,10 +423,10 @@ footer{padding:50px 0;text-align:center;color:var(--muted);font-size:13px;border
       <article class="gcard art" data-rv>
         <div class="art-h"><h3>Sprint board</h3><span class="art-tag">Scrum</span></div>
         <div class="board">
-          <div class="bcol"><h5>Backlog</h5><div class="kc" style="transition-delay:0s">API contract</div><div class="kc" style="transition-delay:.05s">Auth flow</div></div>
-          <div class="bcol"><h5>In progress</h5><div class="kc" style="transition-delay:.1s">Sync service</div></div>
-          <div class="bcol"><h5>Review</h5><div class="kc" style="transition-delay:.15s">Webhook retries</div></div>
-          <div class="bcol"><h5>Done</h5><div class="kc" style="transition-delay:.2s">Schema v2</div><div class="kc" style="transition-delay:.25s">Rate limits</div></div>
+          <div class="bcol"><h4>Backlog</h4><div class="kc" style="transition-delay:0s">API contract</div><div class="kc" style="transition-delay:.05s">Auth flow</div></div>
+          <div class="bcol"><h4>In progress</h4><div class="kc" style="transition-delay:.1s">Sync service</div></div>
+          <div class="bcol"><h4>Review</h4><div class="kc" style="transition-delay:.15s">Webhook retries</div></div>
+          <div class="bcol"><h4>Done</h4><div class="kc" style="transition-delay:.2s">Schema v2</div><div class="kc" style="transition-delay:.25s">Rate limits</div></div>
         </div>
       </article>
       <article class="gcard art" data-rv>
